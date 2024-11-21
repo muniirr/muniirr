@@ -14,7 +14,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100%;
+            min-height: 100vh; /* Safari fallback */
             flex-direction: column;
             overflow: hidden;
             position: relative;
@@ -28,6 +29,7 @@
             font-size: 5em;
             color: #ff69b4;
             animation: pulse 1.5s infinite;
+            -webkit-animation: pulse 1.5s infinite; /* Safari */
         }
         @keyframes pulse {
             0% {
@@ -38,6 +40,17 @@
             }
             100% {
                 transform: scale(1);
+            }
+        }
+        @-webkit-keyframes pulse {
+            0% {
+                -webkit-transform: scale(1);
+            }
+            50% {
+                -webkit-transform: scale(1.2);
+            }
+            100% {
+                -webkit-transform: scale(1);
             }
         }
         .message {
@@ -52,8 +65,17 @@
             font-style: italic;
             margin-top: 30px;
             animation: fadeIn 3s ease-in-out;
+            -webkit-animation: fadeIn 3s ease-in-out; /* Safari */
         }
         @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes fadeIn {
             0% {
                 opacity: 0;
             }
@@ -71,29 +93,25 @@
             margin-top: 30px;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.2s;
+            -webkit-transition: background-color 0.3s, -webkit-transform 0.2s; /* Safari */
         }
         .button:hover {
             background-color: #ff1493;
             transform: scale(1.1);
+            -webkit-transform: scale(1.1); /* Safari */
         }
         .hidden {
             display: none;
             margin-top: 30px;
             text-align: center;
             animation: fadeIn 2s ease-in-out;
+            -webkit-animation: fadeIn 2s ease-in-out; /* Safari */
         }
         .hidden img {
             width: 150px;
             margin: 20px auto;
             animation: pulse 1.5s infinite;
-        }
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            -webkit-animation: pulse 1.5s infinite; /* Safari */
         }
     </style>
 </head>
@@ -134,8 +152,10 @@
             button.innerText = "You're so special! ❤️";
             button.disabled = true;
 
-            // Play romantic music
-            music.play();
+            // Play romantic music (requires user interaction)
+            music.play().catch(() => {
+                alert("Tap to allow music to play!");
+            });
         }
     </script>
 </body>
