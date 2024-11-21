@@ -1,26 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Sarah</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sarah</title>
+    <style>
+        body {
+            background-color: #ffcccb;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .heart {
+            font-size: 5em;
+            color: #ff69b4;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .message {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .poetry {
+            font-size: 1.3em;
+            color: #fff;
+            font-style: italic;
+            margin-top: 30px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .button {
+            background-color: #ff69b4;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .hidden img {
+            width: 150px;
+            margin: 20px auto;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1 id="typewriter" class="fade-in">Hey, Sarah!</h1>
-    <p class="fade-in" style="animation-delay: 1s;">I made something special just for you.</p>
-    <p class="fade-in" style="animation-delay: 2s;">Click the button below to reveal a surprise!</p>
-    <button onclick="showMessage()" class="fade-in" style="animation-delay: 3s;">Click Me</button>
-    <div id="message" class="message hidden fade-in" style="animation-delay: 4s;">❤️ Sarah, you mean the world to me! ❤️</div>
-    <div class="hearts">
-      <!-- Hearts will be animated here -->
+    <h1>Dear Sarah</h1>
+    <div class="heart">❤️</div>
+    <p class="message">I just wanted to tell you how much you mean to me. You light up my life every day.</p>
+    <p class="poetry">
+        "Your smile is my sunrise, <br>
+        Your laugh is my song, <br>
+        In your presence, I find a place where I belong. <br>
+        Through every moment, you make my heart soar, <br>
+        Sarah, you're the one I adore."
+    </p>
+    <button class="button" onclick="revealSurprise()">Click for a surprise</button>
+
+    <div class="hidden" id="reveal">
+        <img src="https://img.icons8.com/emoji/96/red-heart.png" alt="Heart">
+        <p class="message">
+            "You are my world, my everything. <br>
+            Every day with you feels like a dream come true. <br>
+            I can't wait to create endless beautiful memories with you. ❤️"
+        </p>
+        <!-- Romantic Arabic Music -->
+        <audio id="romanticMusic" src="https://www.chosic.com/wp-content/uploads/2021/02/Romantic-Arabic-Music.mp3" preload="auto"></audio>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script>
+        function revealSurprise() {
+            const hiddenDiv = document.getElementById('reveal');
+            const button = document.querySelector('.button');
+            const music = document.getElementById('romanticMusic');
+
+            // Reveal the hidden content
+            hiddenDiv.style.display = 'block';
+            
+            // Change button text and disable it
+            button.innerText = "You're so special! ❤️";
+            button.disabled = true;
+
+            // Play romantic music
+            music.play();
+        }
+    </script>
 </body>
-
 </html>
